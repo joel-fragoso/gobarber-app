@@ -1,13 +1,12 @@
 import React, { FunctionComponent } from "react";
-import { SafeAreaView, View, Text } from "react-native";
+import { View, StatusBar } from "react-native";
 
 const App: FunctionComponent = () => {
   return (
-    <SafeAreaView>
-      <View>
-        <Text>Hello GoStack!</Text>
-      </View>
-    </SafeAreaView>
+    <>
+      <StatusBar barStyle="light-content" backgroundColor="#312e38" />
+      <View style={{ flex: 1, backgroundColor: "#312e38" }} />
+    </>
   );
 };
 
