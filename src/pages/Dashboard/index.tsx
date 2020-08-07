@@ -89,7 +89,7 @@ const Dashboard: FunctionComponent = () => {
               </ProviderMeta>
               <ProviderMeta>
                 <Icon name="clock" size={14} color="#ff9000" />
-                <ProviderMetaText>Segunda à sexta</ProviderMetaText>
+                <ProviderMetaText>8h às 17h</ProviderMetaText>
               </ProviderMeta>
             </ProviderInfo>
           </ProviderContainer>
