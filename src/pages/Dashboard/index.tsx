@@ -72,6 +72,7 @@ const Dashboard: FunctionComponent = () => {
       </Header>
       <ProvidersList
         data={providers}
+        contentContainerStyle={{ paddingBottom: 48 }}
         ListHeaderComponent={
           <ProvidersListTitle>Cabeleireiros</ProvidersListTitle>
         }
