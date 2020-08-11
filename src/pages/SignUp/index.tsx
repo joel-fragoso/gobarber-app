@@ -59,12 +59,12 @@ const SignUp: FunctionComponent = () => {
           abortEarly: false,
         });
 
+        await api.post('/users', data);
+
         Alert.alert(
           'Cadastro realizado com sucesso!',
           'Você já pode fazer logon no GoBarber',
         );
-
-        await api.post('/users', data);
 
         navigation.goBack();
       } catch (err) {
