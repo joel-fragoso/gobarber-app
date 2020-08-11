@@ -1,17 +1,53 @@
-import React, { FunctionComponent } from 'react';
-import { Button } from 'react-native';
+import React, { FunctionComponent, useCallback, useMemo } from 'react';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { format } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
 
-import { useAuth } from '../../hooks/auth';
+import Icon from 'react-native-vector-icons/Feather';
 
-import { Container, Title } from './styles';
+import {
+  Container,
+  Title,
+  Description,
+  OkButton,
+  OkButtonText,
+} from './styles';
+
+interface IRouteParams {
+  date: number;
+}
 
 const AppointmentCreated: FunctionComponent = () => {
-  const { signOut } = useAuth();
+  const { reset } = useNavigation();
+  const { params } = useRoute();
+
+  const routeParams = params as IRouteParams;
+
+  const handleOkPressed = useCallback(() => {
+    reset({
+      routes: [{ name: 'Dashboard' }],
+      index: 0,
+    });
+  }, [reset]);
+
+  const formattedDate = useMemo(() => {
+    return format(
+      routeParams.date,
+      "EEEE', dia' dd 'de' MMMM 'de' yyyy 'às' HH:mm'h'",
+      {
+        locale: ptBR,
+      },
+    );
+  }, [routeParams.date]);
 
   return (
     <Container>
-      <Title>AppointmentCreated</Title>
-      <Button title="Sair" onPress={signOut} />
+      <Icon name="check" size={80} color="#04d361" />
+      <Title>Agendamento concluído</Title>
+      <Description>{formattedDate}</Description>
+      <OkButton onPress={handleOkPressed}>
+        <OkButtonText>Ok</OkButtonText>
+      </OkButton>
     </Container>
   );
 };
